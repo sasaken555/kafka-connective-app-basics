@@ -51,7 +51,8 @@ public class Producer {
     configs.setProperty(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
     configs.setProperty(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
     configs.setProperty(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
-    configs.setProperty(ProducerConfig.ACKS_CONFIG, "1"); // acks after persisted in leader-replica
+    configs.setProperty(ProducerConfig.ACKS_CONFIG, "all"); // acks after persisted in all replica
+    configs.setProperty(ProducerConfig.RETRIES_CONFIG, "5");
 
     return new KafkaProducer<String, String>(configs);
   }
