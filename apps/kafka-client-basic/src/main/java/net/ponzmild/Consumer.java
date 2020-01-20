@@ -26,10 +26,11 @@ public class Consumer {
     logger.info("Consumer created");
 
     consumer.subscribe(Arrays.asList(topic));
-    logger.info("Subscribed topics : %s", topic);
+    logger.info("Subscribed topics : {}", topic);
 
     // 10回だけTopicからレコードを読み出し
-    for (int i = 0; i < 10; i++) {
+    while (true) {
+      logger.info("-------- loop --------");
       // 1秒お気にレコードを読み出し
       ConsumerRecords<String, String> records = consumer.poll(Duration.ofSeconds(1L));
 
@@ -38,12 +39,12 @@ public class Consumer {
         int recordPartition = record.partition();
         String recordKey = record.key();
         String recordVal = record.value();
-        logger.info("Received record: Topic=%s, Partition=%d, Key=%s, Value=%s", recordTopic, recordPartition,
+        logger.info("Received record: Topic={}, Partition={}, Key={}, Value={}", recordTopic, recordPartition,
             recordKey, recordVal);
       }
     }
 
-    System.exit(0);
+    // System.exit(0);
   }
 
   private static KafkaConsumer<String, String> createConsumer(String bootstrapServers, String groupId) {
