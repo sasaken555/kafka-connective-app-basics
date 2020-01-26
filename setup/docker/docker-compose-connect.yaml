@@ -52,15 +52,6 @@ services:
       CONNECT_REST_ADVERTISED_HOST_NAME: "localhost"
       CONNECT_PLUGIN_PATH: /usr/share/java
 
-  cli:
-    image: confluentinc/cp-kafka:5.4.0
-    hostname: cli
-    container_name: cli
-    depends_on:
-      - broker
-    entrypoint: /bin/sh
-    tty: true
-
   postgresql:
     image: postgres:12-alpine
     hostname: postgres
@@ -69,3 +60,5 @@ services:
       POSTGRES_USER: testuser
       POSTGRES_PASSWORD: secretdayo
       POSTGRES_DB: salesdb
+    volumes:
+      - ./data/postgresql:/docker-entrypoint-initdb.d/
