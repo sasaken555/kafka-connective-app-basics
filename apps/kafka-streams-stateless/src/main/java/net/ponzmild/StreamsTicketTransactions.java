@@ -62,7 +62,7 @@ public class StreamsTicketTransactions {
 
     // Default serialize/deserialize configs
     config.setProperty(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, Serdes.String().getClass().getName());
-    config.setProperty(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, Serdes.String().getClass().getName());
+    config.setProperty(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, Serdes.String().getClass().getName());
 
     return config;
   }
@@ -76,6 +76,7 @@ public class StreamsTicketTransactions {
    */
   private Topology getTopology(String inputTopic, String outputTopic) {
     StreamsBuilder builder = new StreamsBuilder();
+    Gson gson = new Gson();
 
     // Read records from topic
     KStream<String, String> inputStream = builder.stream(inputTopic);
@@ -84,17 +85,12 @@ public class StreamsTicketTransactions {
     KStream<String, String> sysoutStream = inputStream.peek((k, v) -> System.out.println("key=" + k + ", value=" + v));
 
     // Include records only type=Website
-    Gson gson = new Gson();
-    KStream<String, String> filteredStream = sysoutStream.filter((k, v) -> {
-      TicketTransaction transaction = gson.fromJson(v, TicketTransaction.class);
-      return transaction.getPurchaseType() == "1"; // Website
-    });
+    KStream<String, String> filteredStream = sysoutStream
+        .filter((k, v) -> gson.fromJson(v, TicketTransaction.class).getPurchaseType().equals("1"));
 
     // Extract only amount
-    KStream<String, Long> amountStream = filteredStream.mapValues(v -> {
-      TicketTransaction transaction = gson.fromJson(v, TicketTransaction.class);
-      return transaction.getAmount();
-    });
+    KStream<String, Long> amountStream = filteredStream
+        .mapValues(v -> gson.fromJson(v, TicketTransaction.class).getAmount());
 
     // Write records to another topic
     // override Serdes to <String, Long> instead of default <String, String>
