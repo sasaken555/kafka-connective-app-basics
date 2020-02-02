@@ -124,3 +124,4 @@ hs_err_pid*
 */**/.vscode
 apps/kafka-streams-stateless/.sts4-cache/classpath-data.json
 apps/kafka-streams-stateless/target/*
+apps/kafka-streams-stateful/target/*
