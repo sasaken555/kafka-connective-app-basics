@@ -1,0 +1,15 @@
+{
+  "name": "postgresql-sales-sink-connector-02",
+  "config": {
+    "name": "postgresql-sales-sink-connector-02",
+    "connector.class": "io.confluent.connect.jdbc.JdbcSinkConnector",
+    "connection.url": "jdbc:postgresql://postgresql:5432/salesdb",
+		"connection.user": "testuser",
+		"connection.password": "secretdayo",
+    "topics": "pg-source-sales",
+    "table.name.format": "dist_sales",
+		"insert.mode": "upsert",
+		"pk.mode": "record_value",
+		"pk.fields": "sales_id"
+  }
+}
