@@ -19,7 +19,7 @@ public class Producer {
   public static void main(final String[] args) {
     final Logger logger = LoggerFactory.getLogger(Producer.class);
     final String bootstrapServers = "127.0.0.1:29092";
-    final String topic = "ticket-transaction";
+    final String topic = "sample-topic";
 
     // Create producer
     final KafkaProducer<String, String> producer = createProducer(bootstrapServers);
@@ -48,9 +48,12 @@ public class Producer {
   private static KafkaProducer<String, String> createProducer(final String bootstrapServers) {
     final Properties configs = new Properties();
 
+    // 必須の設定項目
     configs.setProperty(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
     configs.setProperty(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
     configs.setProperty(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
+
+    // 任意の設定項目
     configs.setProperty(ProducerConfig.ACKS_CONFIG, "all"); // acks after persisted in all replica
     configs.setProperty(ProducerConfig.RETRIES_CONFIG, "5");
 
