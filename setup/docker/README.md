@@ -1,9 +1,9 @@
-# Docker ComposeでKafkaクラスタを立てる
+# Kafka クラスタを Docker Compose で構築する
 
 ## About
 
-KafkaのクラスタをDocker Composeを使ってコンテナで立ち上げます。
-KafkaのDockerコンテナは数多くありますが、本書ではConfluent Platformのコンテナを使用します。
+Kafka のクラスタを Docker Compose を使ってコンテナで立ち上げます。
+Kafka の Docker コンテナは数多くありますが、本書では Confluent Platform のコンテナを使用します。
 
 ## How to use
 
@@ -20,8 +20,11 @@ docker-compose ps
 
 ## Docker Reference
 
-* Confluent社のKafka関連Dockerコンテナのパラメータ設定は以下のドキュメントを参照ください。
-  * [Docker Configuration Parameters - Confluent Platform](https://docs.confluent.io/current/installation/docker/config-reference.html)
+Confluent 社の Kafka 関連 Docker コンテナのパラメータ設定は以下のドキュメントを参照ください。
 
-* また、Confluent社のDockerコンテナにはそれぞれライセンスが定められているので、商用利用には注意が必要です。
-  * [Docker Image Reference - Confluent Platform](https://docs.confluent.io/current/installation/docker/image-reference.html)
+- [Docker Configuration Parameters - Confluent Platform](https://docs.confluent.io/current/installation/docker/config-reference.html)
+
+また、Confluent 社の Docker コンテナイメージはイメージごとにライセンスが定められています。
+商用利用には注意が必要です。
+
+- [Docker Image Reference - Confluent Platform](https://docs.confluent.io/current/installation/docker/image-reference.html)
