@@ -2,7 +2,7 @@ version: "3"
 
 services:
   zookeeper:
-    image: confluentinc/cp-zookeeper:5.4.0
+    image: confluentinc/cp-zookeeper:5.5.1
     hostname: zookeeper
     container_name: zookeeper
     ports:
@@ -12,7 +12,7 @@ services:
       ZOOKEEPER_TICK_TIME: 2000
 
   broker:
-    image: confluentinc/cp-kafka:5.4.0
+    image: confluentinc/cp-kafka:5.5.1
     hostname: broker
     container_name: broker
     depends_on:
@@ -28,7 +28,7 @@ services:
       CONFLUENT_SUPPORT_METRICS_ENABLE: "false"
 
   schema-registry:
-    image: confluentinc/cp-schema-registry:5.4.0
+    image: confluentinc/cp-schema-registry:5.5.1
     hostname: schema-registry
     container_name: schema-registry
     depends_on:
@@ -42,7 +42,7 @@ services:
       SCHEMA_REGISTRY_LOG4J_ROOT_LOGLEVEL: WARN
 
   cli:
-    image: confluentinc/cp-kafka:5.4.0
+    image: confluentinc/cp-kafka:5.5.1
     hostname: cli
     container_name: cli
     depends_on:
