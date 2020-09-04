@@ -1,0 +1,31 @@
+= KubernetesにKafkaクラスタを構築する
+
+== About
+
+Kubernetes(以下、k8s)にアプリケーションをのせている場合、同じクラスタにKafkaクラスタを構築することを検討できます。
+このディレクトリにはk8sにKafkaクラスタを構築するサンプルを格納しています。
+
+
+== クラスタ構築の選択肢
+
+* Kubernetes Operator
+** Strimzi
+
+* Helmチャート
+** bitnami
+** Confluent
+
+* 自作コンテナイメージ
+** KafkaとZookeeperをそれぞれコンテナ化してデプロイ
+
+
+== クラスタ構築手順
+
+https://strimzi.io/[Strimzi]でKafkaクラスタを構築します。
+
+
+== 参考資料
+
+* https://strimzi.io/docs/operators/latest/deploying.html[Deploying Strimzi]
+* https://youtu.be/1qO2qGuJNQI[Strimzi: Apache Kafka on Kubernetes in a few minutes]
+
