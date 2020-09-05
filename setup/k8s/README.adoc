@@ -21,11 +21,56 @@ Kubernetes(以下、k8s)にアプリケーションをのせている場合、�
 
 == クラスタ構築手順
 
-https://strimzi.io/[Strimzi]でKafkaクラスタを構築します。
+このガイドでは、Kubernetes Operatorである https://strimzi.io/[Strimzi] でKafkaクラスタを構築します。
+StrimziはKubernetesの一般的なリソースと同様に、YAMLファイルを用いて宣言的にKafkaのコンポーネント・リソースを管理します。
+
+[[app-listing]]
+[source,bash]
+.create-cluster.sh
+----
+# Operator用の名前空間を作成
+kubectl create namespace kafka
+
+# 作成した名前空間にOperatorのCRDを登録
+kubectl apply -f 'https://strimzi.io/install/latest?namespace=kafka' -n kafka
+
+# Kafkaクラスタを作成
+kubectl apply -f https://strimzi.io/examples/latest/kafka/kafka-persistent-single.yaml -n kafka 
+----
+
+
+== Operatorの構成要素
+
+Strimziでは構成要素ごとに用意されたOperatorを組み合わせてKafkaクラスタを構築します。
+Operatorは以下の通りです。
+
+Cluster Operator::
+  クラスタの物理コンポーネントを管理するOperatorです。リソース名は `Kafka` です。
+  以下のコンポーネントを管理できます。
+  * Kafka ... Kafkaが動作するインスタンス。
+  * Zookeeper ... Kafkaのメタデータを管理する"Zookeeper"のインスタンス。
+  * Kafka Connect ... Kafkaとデータシステム(RDBやTwitterのようなSaaS)でメッセージを受け渡しするKafka Connectサーバー。
+  * Kafka MirrorMaker ... Kafkaクラスタ間でデータをレプリケーションする"MirrorMaker"インスタンス。
+  * Kafka Exporter ... Kafkaのメトリクスを出力するExporterインスタンス
+  * Kafka Bridge ... HTTPリクエストをKafkaクラスタの操作に変換するインスタンス
+  * Entity Operator
+
+Entity Operator::
+後述するTopic OperatorとUser Operatorをまとめて管理するOperatorです。
+
+Topic Operator::
+KafkaのTopicを管理するOperatorです。
+リソース名は `KafkaTopic` です。
+
+User Operator::
+Kafkaにアクセスするユーザーを管理するOperatorです。
+リソース名は `KafkaUser` です。
++
+作成されたユーザーの認証情報は `Secret` リソースに格納されます。
+Kafkaクライアントアプリケーションは `Secret` を使用して認証・認可を行います。
 
 
 == 参考資料
 
-* https://strimzi.io/docs/operators/latest/deploying.html[Deploying Strimzi]
 * https://youtu.be/1qO2qGuJNQI[Strimzi: Apache Kafka on Kubernetes in a few minutes]
-
+* https://strimzi.io/docs/operators/latest/deploying.html[Deploying Strimzi]
