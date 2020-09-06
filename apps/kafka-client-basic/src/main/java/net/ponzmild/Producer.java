@@ -21,7 +21,7 @@ public class Producer {
         final KafkaProducer<String, String> producer = createProducer(bootstrapServers);
 
         // create and send data
-        final ProducerRecord<String, String> record = new ProducerRecord<String, String>(topic, "product-001", "100");
+        final ProducerRecord<String, String> record = new ProducerRecord<>(topic, "product-001", "100");
 
         producer.send(record, new Callback() {
             @Override
@@ -53,6 +53,6 @@ public class Producer {
         configs.setProperty(ProducerConfig.ACKS_CONFIG, "all"); // acks after persisted in all replica
         configs.setProperty(ProducerConfig.RETRIES_CONFIG, "5");
 
-        return new KafkaProducer<String, String>(configs);
+        return new KafkaProducer<>(configs);
     }
 }

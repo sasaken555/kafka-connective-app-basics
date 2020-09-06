@@ -25,7 +25,7 @@ public class TransactionProducer {
         // create and send data
         String txId = "54255724-b2ae-4e81-adc4-7179282032e6";
         TicketTransactionModel tx = new TicketTransactionModel(txId, 6000L, "1");
-        final ProducerRecord<String, String> record = new ProducerRecord<String, String>(topic, txId, gson.toJson(tx));
+        final ProducerRecord<String, String> record = new ProducerRecord<>(topic, txId, gson.toJson(tx));
 
         producer.send(record, new Callback() {
             @Override
@@ -54,6 +54,6 @@ public class TransactionProducer {
         configs.setProperty(ProducerConfig.ACKS_CONFIG, "all"); // acks after persisted in all replica
         configs.setProperty(ProducerConfig.RETRIES_CONFIG, "5");
 
-        return new KafkaProducer<String, String>(configs);
+        return new KafkaProducer<>(configs);
     }
 }
