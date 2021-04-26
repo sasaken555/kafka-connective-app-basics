@@ -2,7 +2,7 @@ version: "3"
 
 services:
   zookeeper:
-    image: confluentinc/cp-zookeeper:5.5.1
+    image: confluentinc/cp-zookeeper:6.1.1
     hostname: zookeeper
     container_name: zookeeper
     ports:
@@ -12,7 +12,7 @@ services:
       ZOOKEEPER_TICK_TIME: 2000
 
   broker1:
-    image: confluentinc/cp-kafka:5.5.1
+    image: confluentinc/cp-kafka:6.1.1
     hostname: broker1
     container_name: broker1
     depends_on:
@@ -29,7 +29,7 @@ services:
       CONFLUENT_SUPPORT_METRICS_ENABLE: "false"
 
   broker2:
-    image: confluentinc/cp-kafka:5.5.1
+    image: confluentinc/cp-kafka:6.1.1
     hostname: broker2
     container_name: broker2
     depends_on:
@@ -46,7 +46,7 @@ services:
       CONFLUENT_SUPPORT_METRICS_ENABLE: "false"
 
   broker3:
-    image: confluentinc/cp-kafka:5.5.1
+    image: confluentinc/cp-kafka:6.1.1
     hostname: broker3
     container_name: broker3
     depends_on:
@@ -63,7 +63,7 @@ services:
       CONFLUENT_SUPPORT_METRICS_ENABLE: "false"
 
   cli:
-    image: confluentinc/cp-kafka:5.5.1
+    image: confluentinc/cp-kafka:6.1.1
     hostname: cli
     container_name: cli
     depends_on:
