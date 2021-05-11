@@ -14,7 +14,7 @@ Kafka Connect とリレーショナルデータベースを接続するサンプ
   - Sink Connector ... Kafka Connect JDBC
 
 - Kafka Connect
-  - コンテナイメージ ... `confluentinc/cp-kafka-connect:5.4.0`
+  - コンテナイメージ ... `confluentinc/cp-kafka-connect:6.1.1`
 
 ## Usage
 
