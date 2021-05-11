@@ -72,3 +72,5 @@ out/
 hs_err_pid*
 
 
+# Maven
+target/
