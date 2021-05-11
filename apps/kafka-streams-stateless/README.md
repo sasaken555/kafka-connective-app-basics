@@ -24,7 +24,7 @@ docker image ls
 REPOSITORY                TAG      IMAGE ID       CREATED        SIZE
 kafka-streams-stateless   latest   08e87b501d78   50 years ago   222MB
 
-docker run --rm -e APP_ID="this-is-sample" BOOTSTRAP_SERVERS="broker:9092" kafka-streams-stateless
+docker run --rm -e APP_ID="this-is-sample" -e BOOTSTRAP_SERVERS="broker:9092" kafka-streams-stateless
 ```
 
 ### Visual Studio Codeで動かす場合
