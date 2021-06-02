@@ -3,12 +3,12 @@ updates:
   - package-ecosystem: "maven"
     directory: /apps/kafka-client-basic
     schedule:
-      interval: "daily"
+      interval: "weekly"
   - package-ecosystem: "maven"
     directory: /apps/kafka-streams-stateless
     schedule:
-      interval: "daily"
+      interval: "weekly"
   - package-ecosystem: "maven"
     directory: /apps/kafka-streams-stateful
     schedule:
-      interval: "daily"
+      interval: "weekly"
