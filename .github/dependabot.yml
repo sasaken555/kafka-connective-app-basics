@@ -1,0 +1,6 @@
+version: 2
+updates:
+  - package-ecosystem: "maven"
+    directory: /apps/kafka-client-basic
+    schedule:
+      interval: "daily"
